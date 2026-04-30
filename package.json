@@ -1,0 +1,10 @@
+{
+  "name": "skillbox",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-skills.mjs",
+    "package": "node scripts/package-skills.mjs",
+    "build": "npm run validate && npm run package"
+  }
+}

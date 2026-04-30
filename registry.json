@@ -1,0 +1,13 @@
+{
+  "name": "skillbox",
+  "description": "A collection of reusable agent skills.",
+  "skills": [
+    {
+      "name": "frontend-design",
+      "path": "skills/frontend-design",
+      "version": "0.1.0",
+      "description": "Frontend UI design and implementation guidance for polished, production-ready interfaces.",
+      "tags": ["frontend", "design", "ui", "codex"]
+    }
+  ]
+}
