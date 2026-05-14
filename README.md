@@ -9,6 +9,7 @@ The current focus is Codex, but the repo is structured around portable skill fol
 | Skill | Description |
 | --- | --- |
 | `frontend-design` | Frontend UI design and implementation guidance for polished, production-ready interfaces. |
+| `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
 
 ## Structure
 
@@ -19,6 +20,10 @@ skills/
     README.md
     references/
     examples/
+  write-codex-goal/
+    SKILL.md
+    README.md
+    references/
 ```
 
 Each folder inside `skills/` is intended to be standalone.

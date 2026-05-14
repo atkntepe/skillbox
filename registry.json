@@ -8,6 +8,13 @@
       "version": "0.1.0",
       "description": "Frontend UI design and implementation guidance for polished, production-ready interfaces.",
       "tags": ["frontend", "design", "ui", "codex"]
+    },
+    {
+      "name": "write-codex-goal",
+      "path": "skills/write-codex-goal",
+      "version": "0.1.0",
+      "description": "Guidance for preparing durable Codex /goal instruction files and slash prompts.",
+      "tags": ["codex", "goal", "planning", "automation"]
     }
   ]
 }
