@@ -9,6 +9,7 @@ The current focus is Codex, but the repo is structured around portable skill fol
 | Skill | Description |
 | --- | --- |
 | `frontend-design` | Frontend UI design and implementation guidance for polished, production-ready interfaces. |
+| `humanize-documentation` | Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful. |
 | `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
 
 ## Structure
@@ -20,6 +21,9 @@ skills/
     README.md
     references/
     examples/
+  humanize-documentation/
+    SKILL.md
+    README.md
   write-codex-goal/
     SKILL.md
     README.md

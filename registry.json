@@ -10,6 +10,13 @@
       "tags": ["frontend", "design", "ui", "codex"]
     },
     {
+      "name": "humanize-documentation",
+      "path": "skills/humanize-documentation",
+      "version": "0.1.0",
+      "description": "Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful.",
+      "tags": ["documentation", "technical-writing", "components", "tone"]
+    },
+    {
       "name": "write-codex-goal",
       "path": "skills/write-codex-goal",
       "version": "0.1.0",
