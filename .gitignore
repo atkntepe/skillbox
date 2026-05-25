@@ -1,3 +1,4 @@
 node_modules/
 dist/*.zip
+.codex-skills/
 .DS_Store

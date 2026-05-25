@@ -1,4 +1,0 @@
-interface:
-  display_name: "Figma Editable Layouts"
-  short_description: "Figma auto layout and editability guardrails"
-  default_prompt: "Use $figma-editable-layouts to create Figma designs that are easy for designers to edit later."
