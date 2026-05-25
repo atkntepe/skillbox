@@ -10,6 +10,13 @@
       "tags": ["frontend", "design", "ui", "codex"]
     },
     {
+      "name": "figma-editable-layouts",
+      "path": "skills/figma-editable-layouts",
+      "version": "0.1.0",
+      "description": "Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure.",
+      "tags": ["figma", "design", "auto-layout", "ui"]
+    },
+    {
       "name": "humanize-documentation",
       "path": "skills/humanize-documentation",
       "version": "0.1.0",
