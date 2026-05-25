@@ -1,8 +1,8 @@
 # skillbox
 
-A small collection of reusable agent skills.
+Reusable agent skills for Codex.
 
-The current focus is Codex, but the repo is structured around portable skill folders so individual skills can be copied, installed, or packaged independently.
+Each skill lives in its own folder under `skills/`, with a required `SKILL.md` and a small `README.md`. Skills are meant to be copied, installed, or packaged independently.
 
 ## Skills
 
@@ -12,6 +12,8 @@ The current focus is Codex, but the repo is structured around portable skill fol
 | `figma-editable-layouts` | Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure. |
 | `humanize-documentation` | Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful. |
 | `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
+
+The same list is tracked in `registry.json` so scripts and humans can discover the available skills from one place.
 
 ## Structure
 
@@ -35,41 +37,52 @@ skills/
     references/
 ```
 
-Each folder inside `skills/` is intended to be standalone.
+Optional folders such as `references/`, `examples/`, `assets/`, `scripts/`, and `agents/` belong inside the skill folder that uses them.
 
-## Install a skill manually
+## Install
 
-Clone the repo:
+Clone the repository:
 
 ```sh
-git clone https://github.com/<your-username>/skillbox.git
+git clone https://github.com/atkntepe/skillbox.git
 cd skillbox
 ```
 
-Copy a skill into your user-level Codex skills folder:
+Copy the skill you want into your user-level Codex skills directory:
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/frontend-design ~/.agents/skills/frontend-design
+mkdir -p ~/.codex/skills
+cp -R skills/frontend-design ~/.codex/skills/frontend-design
 ```
 
-Or copy it into a project:
+Replace `frontend-design` with any skill folder name from the table above. Restart Codex after installing a new skill so it can load the updated skill list.
+
+## Validate
 
 ```sh
-mkdir -p .agents/skills
-cp -R skills/frontend-design .agents/skills/frontend-design
+npm run validate
 ```
 
-## Package skills
+Validation checks that every folder in `skills/` has `SKILL.md`, has `README.md`, has required frontmatter, uses a frontmatter `name` that matches the folder name, and is listed in `registry.json`.
+
+## Package
 
 ```sh
-node scripts/package-skills.mjs
+npm run package
 ```
 
-This creates zip files in `dist/`.
+Packaging writes one zip file per skill to `dist/` and uses the system `zip` command.
 
-## Validate skills
+To run both validation and packaging:
 
 ```sh
-node scripts/validate-skills.mjs
+npm run build
 ```
+
+## Add a Skill
+
+1. Create `skills/<skill-name>/`.
+2. Add `SKILL.md` with `name` and `description` frontmatter.
+3. Add a short `README.md` with use cases and install instructions.
+4. Add the skill to `registry.json`.
+5. Run `npm run validate`.
