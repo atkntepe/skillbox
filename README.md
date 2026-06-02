@@ -11,6 +11,7 @@ Each skill lives in its own folder under `skills/`, with a required `SKILL.md` a
 | `frontend-design` | Frontend UI design and implementation guidance for polished, production-ready interfaces. |
 | `figma-editable-layouts` | Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure. |
 | `humanize-documentation` | Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful. |
+| `svg-design` | Guidance and lightweight tooling for creating, converting, and debugging SVG mockups without overlap, clipping, or scaling issues. |
 | `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
 
 The same list is tracked in `registry.json` so scripts and humans can discover the available skills from one place.
@@ -31,6 +32,12 @@ skills/
   humanize-documentation/
     SKILL.md
     README.md
+  svg-design/
+    SKILL.md
+    README.md
+    agents/
+    references/
+    scripts/
   write-codex-goal/
     SKILL.md
     README.md

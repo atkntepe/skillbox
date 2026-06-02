@@ -24,6 +24,13 @@
       "tags": ["documentation", "technical-writing", "components", "tone"]
     },
     {
+      "name": "svg-design",
+      "path": "skills/svg-design",
+      "version": "0.1.0",
+      "description": "Guidance and lightweight tooling for creating, converting, and debugging SVG mockups without overlap, clipping, or scaling issues.",
+      "tags": ["svg", "design", "vector", "mockups", "codex"]
+    },
+    {
       "name": "write-codex-goal",
       "path": "skills/write-codex-goal",
       "version": "0.1.0",
