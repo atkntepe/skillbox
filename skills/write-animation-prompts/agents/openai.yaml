@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Animation Prompts"
+  short_description: "Motion vocabulary for stronger AI prompts"
+  default_prompt: "Use $write-animation-prompts to turn this rough animation idea into a precise prompt."

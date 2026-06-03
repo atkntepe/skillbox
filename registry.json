@@ -31,6 +31,13 @@
       "tags": ["svg", "design", "vector", "mockups", "codex"]
     },
     {
+      "name": "write-animation-prompts",
+      "path": "skills/write-animation-prompts",
+      "version": "0.1.0",
+      "description": "Guidance for writing precise animation prompts with motion vocabulary, timing, sequencing, and constraints.",
+      "tags": ["animation", "motion", "prompting", "video", "ui"]
+    },
+    {
       "name": "write-codex-goal",
       "path": "skills/write-codex-goal",
       "version": "0.1.0",
