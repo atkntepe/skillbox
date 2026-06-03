@@ -17,6 +17,18 @@ Each skill lives in its own folder under `skills/`, with a required `SKILL.md` a
 
 The same list is tracked in `registry.json` so scripts and humans can discover the available skills from one place.
 
+## Skill Notes
+
+### `write-animation-prompts`
+
+Use this skill when a rough motion idea needs to become a precise animation prompt for AI video tools, UI microinteractions, product demos, animated storyboards, or kinetic typography.
+
+It includes:
+
+- A prompt-writing workflow for translating vague direction into subject, motion job, timing, easing, camera or viewport, and constraints.
+- Example rewrites that show how to move from broad requests like "make it premium" to specific animation direction.
+- A `references/motion-vocabulary.md` glossary for entrances, exits, sequencing, transforms, state transitions, interaction feedback, easing, physics, ambient loops, camera language, performance, and reduced motion.
+
 ## Structure
 
 ```txt
