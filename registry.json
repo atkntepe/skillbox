@@ -24,6 +24,13 @@
       "tags": ["documentation", "technical-writing", "components", "tone"]
     },
     {
+      "name": "remotion-prompts",
+      "path": "skills/remotion-prompts",
+      "version": "0.1.0",
+      "description": "Guidance for drafting agent-ready Remotion marketing-video prompts with storyboard, timing, and ad structure.",
+      "tags": ["remotion", "video", "marketing", "prompting", "ads"]
+    },
+    {
       "name": "svg-design",
       "path": "skills/svg-design",
       "version": "0.1.0",

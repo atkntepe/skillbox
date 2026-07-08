@@ -11,6 +11,7 @@ Each skill lives in its own folder under `skills/`, with a required `SKILL.md` a
 | `frontend-design` | Frontend UI design and implementation guidance for polished, production-ready interfaces. |
 | `figma-editable-layouts` | Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure. |
 | `humanize-documentation` | Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful. |
+| `remotion-prompts` | Guidance for drafting agent-ready Remotion marketing-video prompts with storyboard, timing, and ad structure. |
 | `svg-design` | Guidance and lightweight tooling for creating, converting, and debugging SVG mockups without overlap, clipping, or scaling issues. |
 | `write-animation-prompts` | Guidance for writing precise animation prompts with motion vocabulary, timing, sequencing, and constraints. |
 | `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
@@ -18,6 +19,17 @@ Each skill lives in its own folder under `skills/`, with a required `SKILL.md` a
 The same list is tracked in `registry.json` so scripts and humans can discover the available skills from one place.
 
 ## Skill Notes
+
+### `remotion-prompts`
+
+Use this skill when a product, launch, or social-ad idea needs to become a scene-by-scene Remotion prompt that a coding agent can implement.
+
+It includes:
+
+- A workflow for choosing the video job, marketing structure, storyboard, implementation constraints, and review gates.
+- A reusable prompt skeleton with scene timing, frame counts, product/UI direction, motion constraints, and verification steps.
+- Reference notes for product demo, launch video, CTA overlay, and promo prompt patterns.
+- Marketing-video best practices for hooks, captions, proof scenes, CTA structure, creative variants, and Remotion-specific guardrails.
 
 ### `write-animation-prompts`
 
@@ -45,6 +57,11 @@ skills/
   humanize-documentation/
     SKILL.md
     README.md
+  remotion-prompts/
+    SKILL.md
+    README.md
+    agents/
+    references/
   svg-design/
     SKILL.md
     README.md

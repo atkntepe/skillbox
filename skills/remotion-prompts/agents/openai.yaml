@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remotion Prompts"
+  short_description: "Storyboard Remotion ad prompts"
+  default_prompt: "Use $remotion-prompts to draft a Remotion marketing-video prompt for this product: [paste product, audience, assets, goal]."
