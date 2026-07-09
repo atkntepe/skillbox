@@ -6,28 +6,47 @@ import path from "node:path";
 const args = process.argv.slice(2);
 
 function usage() {
-  console.log("Usage: node skills/svg-design/scripts/svg-preview.mjs <file.svg> [--out preview.html]");
+  console.log("Usage: node svg-preview.mjs <file.svg> [--out preview.html] [--strict] [--allow-unsafe]");
+  console.log("  --strict        Exit with code 2 when structural audit errors are found.");
+  console.log("  --allow-unsafe  Embed active-content markup. Preview CSP still blocks scripts and network.");
 }
 
 function parseArgs(argv) {
-  const parsed = { input: null, out: null, help: false };
+  const parsed = { input: null, out: null, help: false, strict: false, allowUnsafe: false };
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === "--help" || arg === "-h") {
       parsed.help = true;
     } else if (arg === "--out") {
-      parsed.out = argv[index + 1] ?? null;
+      const value = argv[index + 1];
+      if (!value || value.startsWith("--")) throw new Error("--out requires a file path.");
+      parsed.out = value;
       index += 1;
+    } else if (arg === "--strict") {
+      parsed.strict = true;
+    } else if (arg === "--allow-unsafe") {
+      parsed.allowUnsafe = true;
+    } else if (arg.startsWith("--")) {
+      throw new Error(`Unknown option: ${arg}`);
     } else if (!arg.startsWith("--") && !parsed.input) {
       parsed.input = arg;
+    } else {
+      throw new Error(`Unexpected argument: ${arg}`);
     }
   }
 
   return parsed;
 }
 
-const parsedArgs = parseArgs(args);
+let parsedArgs;
+try {
+  parsedArgs = parseArgs(args);
+} catch (error) {
+  console.error(`[error] ${error.message}`);
+  usage();
+  process.exit(1);
+}
 
 if (!parsedArgs.input || parsedArgs.help) {
   usage();
@@ -45,36 +64,62 @@ if (!fs.existsSync(inputPath)) {
 }
 
 const svg = fs.readFileSync(inputPath, "utf8");
+const unsafeFeatures = findUnsafeSvgFeatures(svg);
+if (unsafeFeatures.length && !parsedArgs.allowUnsafe) {
+  console.error("[error] Refusing to embed active SVG content in an HTML preview:");
+  for (const feature of unsafeFeatures) console.error(`- ${feature}`);
+  console.error("Use --allow-unsafe only when the SVG is trusted and active content is intentional.");
+  process.exit(2);
+}
+
 const audit = auditSvg(svg);
+if (unsafeFeatures.length) audit.errors.push(...unsafeFeatures.map((item) => `Unsafe content allowed: ${item}`));
 const html = buildPreview(svg, inputPath, audit);
 
 fs.writeFileSync(outputPath, html, "utf8");
 
 console.log(`[ok] Wrote ${outputPath}`);
+if (audit.errors.length) {
+  console.log("\nErrors:");
+  for (const error of audit.errors) console.log(`- ${error}`);
+}
 if (audit.warnings.length) {
   console.log("\nWarnings:");
   for (const warning of audit.warnings) console.log(`- ${warning}`);
 } else {
   console.log("No lightweight audit warnings.");
 }
+if (parsedArgs.strict && audit.errors.length) process.exitCode = 2;
+
+function findUnsafeSvgFeatures(source) {
+  const findings = [];
+  if (/<script\b/i.test(source)) findings.push("script tag present");
+  if (/\bon[a-z]+\s*=/i.test(source)) findings.push("inline event-handler attribute present");
+  if (/\b(?:href|xlink:href)\s*=\s*["']\s*javascript:/i.test(source)) {
+    findings.push("javascript: URL present");
+  }
+  if (/<(?:iframe|object|embed|foreignObject)\b/i.test(source)) {
+    findings.push("embedded HTML or external-object element present");
+  }
+  return findings;
+}
 
 function auditSvg(source) {
+  const errors = [];
   const warnings = [];
   const rootMatch = source.match(/<svg\b([^>]*)>/i);
   const rootAttrs = rootMatch ? parseAttrs(rootMatch[1]) : {};
 
-  if (!rootMatch) warnings.push("No root <svg> element found.");
+  if (!rootMatch) errors.push("No root <svg> element found.");
   if (!rootAttrs.viewBox) warnings.push("Missing root viewBox. Responsive scaling and clipping are harder to reason about.");
   if (!rootAttrs.width) warnings.push("Missing root width. Fixed-size exports may render unpredictably in some wrappers.");
   if (!rootAttrs.height) warnings.push("Missing root height. Fixed-size exports may render unpredictably in some wrappers.");
   if (!/<title\b/i.test(source) && !/aria-label=/i.test(source) && !/role=["']img["']/i.test(source)) {
     warnings.push("No <title>, aria-label, or role=\"img\" found for meaningful standalone accessibility.");
   }
-  if (/<script\b/i.test(source)) warnings.push("script tag present. Do not open generated previews for untrusted SVG files.");
-
   const ids = collectAll(source, /\bid=["']([^"']+)["']/gi);
   const duplicates = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
-  for (const id of duplicates) warnings.push(`Duplicate id "${id}" can break gradients, clips, masks, or embedded SVG instances.`);
+  for (const id of duplicates) errors.push(`Duplicate id "${id}" can break gradients, clips, masks, or embedded SVG instances.`);
 
   const idSet = new Set(ids);
   const refs = [
@@ -82,7 +127,7 @@ function auditSvg(source) {
     ...collectAll(source, /\b(?:href|xlink:href)=["']#([^"']+)["']/gi)
   ];
   for (const ref of refs) {
-    if (!idSet.has(ref)) warnings.push(`Reference "#${ref}" has no matching id.`);
+    if (!idSet.has(ref)) errors.push(`Reference "#${ref}" has no matching id.`);
   }
 
   if (/<foreignObject\b/i.test(source)) warnings.push("foreignObject limits portability. Use only when the target renderer supports it.");
@@ -99,13 +144,14 @@ function auditSvg(source) {
   }
 
   const viewBox = parseViewBox(rootAttrs.viewBox);
+  if (rootAttrs.viewBox && !viewBox) errors.push("Root viewBox must contain four finite numbers with positive width and height.");
   if (viewBox) {
     const outOfBounds = findLikelyOutOfBounds(source, viewBox);
     for (const item of outOfBounds.slice(0, 6)) warnings.push(item);
     if (outOfBounds.length > 6) warnings.push(`${outOfBounds.length - 6} more possible out-of-viewBox coordinates omitted.`);
   }
 
-  return { rootAttrs, warnings };
+  return { rootAttrs, errors, warnings };
 }
 
 function parseAttrs(raw) {
@@ -124,6 +170,7 @@ function parseViewBox(value) {
   const parts = value.trim().split(/[\s,]+/).map(Number);
   if (parts.length !== 4 || parts.some((part) => Number.isNaN(part))) return null;
   const [minX, minY, width, height] = parts;
+  if (width <= 0 || height <= 0) return null;
   return { minX, minY, maxX: minX + width, maxY: minY + height };
 }
 
@@ -143,6 +190,9 @@ function findLikelyOutOfBounds(source, viewBox) {
 
 function buildPreview(source, inputPathForLabel, audit) {
   const escapedPath = escapeHtml(inputPathForLabel);
+  const escapedErrors = audit.errors.length
+    ? audit.errors.map((error) => `<li>${escapeHtml(error)}</li>`).join("\n")
+    : "<li>No structural audit errors.</li>";
   const escapedWarnings = audit.warnings.length
     ? audit.warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join("\n")
     : "<li>No lightweight audit warnings.</li>";
@@ -152,6 +202,7 @@ function buildPreview(source, inputPathForLabel, audit) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob: file:; style-src 'unsafe-inline'; font-src 'self' data: file:">
   <title>SVG Preview: ${escapeHtml(path.basename(inputPathForLabel))}</title>
   <style>
     :root {
@@ -254,6 +305,7 @@ function buildPreview(source, inputPathForLabel, audit) {
     </section>
     <section class="panel">
       <h2>Lightweight audit</h2>
+      <ul>${escapedErrors}</ul>
       <ul>${escapedWarnings}</ul>
     </section>
   </main>

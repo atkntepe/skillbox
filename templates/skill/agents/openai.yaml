@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Name"
+  short_description: "Describe the reusable workflow in 25-64 characters"
+  default_prompt: "Use $skill-name to complete this reusable workflow: [describe the task]."

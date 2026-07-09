@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanize Documentation"
+  short_description: "Make technical docs precise, natural, and useful"
+  default_prompt: "Use $humanize-documentation to rewrite these technical docs in a clear maintainer voice without changing the contract."

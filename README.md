@@ -1,103 +1,59 @@
 # skillbox
 
-Reusable agent skills for Codex.
-
-Each skill lives in its own folder under `skills/`, with a required `SKILL.md` and a small `README.md`. Skills are meant to be copied, installed, or packaged independently.
+A curated Codex plugin containing focused, reusable agent skills. Install the collection as one plugin or copy an individual skill into a user or repository skill directory.
 
 ## Skills
 
-| Skill | Description |
+| Skill | Job |
 | --- | --- |
-| `frontend-design` | Frontend UI design and implementation guidance for polished, production-ready interfaces. |
-| `figma-editable-layouts` | Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure. |
-| `humanize-documentation` | Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful. |
-| `remotion-prompts` | Guidance for drafting agent-ready Remotion marketing-video prompts with storyboard, timing, and ad structure. |
-| `svg-design` | Guidance and lightweight tooling for creating, converting, and debugging SVG mockups without overlap, clipping, or scaling issues. |
-| `write-animation-prompts` | Guidance for writing precise animation prompts with motion vocabulary, timing, sequencing, and constraints. |
-| `write-codex-goal` | Guidance for preparing durable Codex `/goal` instruction files and slash prompts. |
+| `frontend-design` | Design, implement, review, and polish production-ready frontend UI. |
+| `figma-editable-layouts` | Create editable Figma layouts with auto layout, components, and clean layer structure. |
+| `humanize-documentation` | Rewrite technical documentation in a precise, natural maintainer voice. |
+| `remotion-prompts` | Draft agent-ready Remotion marketing-video prompts with storyboard and implementation direction. |
+| `svg-design` | Create, convert, debug, and visually verify SVG assets and mockups. |
+| `write-animation-prompts` | Turn rough motion ideas into precise animation prompts. |
+| `write-codex-goal` | Prepare durable Codex goal contracts with measurable stop conditions. |
 
-The same list is tracked in `registry.json` so scripts and humans can discover the available skills from one place.
+`registry.json` tracks the same collection for scripts and standalone packaging.
 
-## Skill Notes
+## Install the plugin
 
-### `remotion-prompts`
+Add this repository as a Codex marketplace, then install the bundled plugin:
 
-Use this skill when a product, launch, or social-ad idea needs to become a scene-by-scene Remotion prompt that a coding agent can implement.
-
-It includes:
-
-- A workflow for choosing the video job, marketing structure, storyboard, implementation constraints, and review gates.
-- A reusable prompt skeleton with scene timing, frame counts, product/UI direction, motion constraints, and verification steps.
-- Reference notes for product demo, launch video, CTA overlay, and promo prompt patterns.
-- Marketing-video best practices for hooks, captions, proof scenes, CTA structure, creative variants, and Remotion-specific guardrails.
-
-### `write-animation-prompts`
-
-Use this skill when a rough motion idea needs to become a precise animation prompt for AI video tools, UI microinteractions, product demos, animated storyboards, or kinetic typography.
-
-It includes:
-
-- A prompt-writing workflow for translating vague direction into subject, motion job, timing, easing, camera or viewport, and constraints.
-- Example rewrites that show how to move from broad requests like "make it premium" to specific animation direction.
-- A `references/motion-vocabulary.md` glossary for entrances, exits, sequencing, transforms, state transitions, interaction feedback, easing, physics, ambient loops, camera language, performance, and reduced motion.
-
-## Structure
-
-```txt
-skills/
-  frontend-design/
-    SKILL.md
-    README.md
-    references/
-    examples/
-  figma-editable-layouts/
-    SKILL.md
-    README.md
-    agents/
-  humanize-documentation/
-    SKILL.md
-    README.md
-  remotion-prompts/
-    SKILL.md
-    README.md
-    agents/
-    references/
-  svg-design/
-    SKILL.md
-    README.md
-    agents/
-    references/
-    scripts/
-  write-animation-prompts/
-    SKILL.md
-    README.md
-    agents/
-    references/
-  write-codex-goal/
-    SKILL.md
-    README.md
-    references/
+```sh
+codex plugin marketplace add atkntepe/skillbox
+codex plugin add skillbox@skillbox
 ```
 
-Optional folders such as `references/`, `examples/`, `assets/`, `scripts/`, and `agents/` belong inside the skill folder that uses them.
+Codex discovers the seven skills from the plugin manifest at `.codex-plugin/plugin.json`.
 
-## Install
+## Install one skill
 
-Clone the repository:
+Clone the repository and copy the required folder into the current user-level skill location:
 
 ```sh
 git clone https://github.com/atkntepe/skillbox.git
 cd skillbox
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/frontend-design "$HOME/.agents/skills/frontend-design"
 ```
 
-Copy the skill you want into your user-level Codex skills directory:
+For repository-scoped use, copy the skill into `.agents/skills/` under the relevant repository root or parent directory. Codex detects skill changes automatically; restart it if a new or updated skill does not appear.
 
-```sh
-mkdir -p ~/.codex/skills
-cp -R skills/frontend-design ~/.codex/skills/frontend-design
+## Structure
+
+```text
+.codex-plugin/plugin.json          Plugin manifest
+.agents/plugins/marketplace.json  Repository marketplace metadata
+skills/<name>/SKILL.md             Trigger metadata and core workflow
+skills/<name>/agents/openai.yaml   Codex UI metadata and starter prompt
+skills/<name>/references/          On-demand supporting guidance
+skills/<name>/scripts/             Deterministic helpers, when justified
+templates/skill/                   Starting point for a new collection entry
+registry.json                      Standalone skill catalog
 ```
 
-Replace `frontend-design` with any skill folder name from the table above. Restart Codex after installing a new skill so it can load the updated skill list.
+Each skill also keeps a short `README.md` because standalone zip packages are intended to remain understandable outside the plugin.
 
 ## Validate
 
@@ -105,7 +61,7 @@ Replace `frontend-design` with any skill folder name from the table above. Resta
 npm run validate
 ```
 
-Validation checks that every folder in `skills/` has `SKILL.md`, has `README.md`, has required frontmatter, uses a frontmatter `name` that matches the folder name, and is listed in `registry.json`.
+Validation checks skill metadata, naming, trigger descriptions, UI metadata, referenced resources, registry parity, template completeness, and plugin/marketplace structure.
 
 ## Package
 
@@ -113,18 +69,18 @@ Validation checks that every folder in `skills/` has `SKILL.md`, has `README.md`
 npm run package
 ```
 
-Packaging writes one zip file per skill to `dist/` and uses the system `zip` command.
+Packaging writes one zip per standalone skill plus `dist/skillbox-plugin.zip`.
 
-To run both validation and packaging:
+Run both gates with:
 
 ```sh
 npm run build
 ```
 
-## Add a Skill
+## Add or update a skill
 
-1. Create `skills/<skill-name>/`.
-2. Add `SKILL.md` with `name` and `description` frontmatter.
-3. Add a short `README.md` with use cases and install instructions.
-4. Add the skill to `registry.json`.
-5. Run `npm run validate`.
+1. Start from `templates/skill/` and replace every placeholder.
+2. Keep `SKILL.md` focused on one reusable job and put trigger scope in its frontmatter description.
+3. Add only the references, scripts, or assets the workflow needs.
+4. Keep `agents/openai.yaml`, the standalone `README.md`, and `registry.json` synchronized.
+5. Test scripts directly, run `npm run validate`, and forward-test complex workflow changes on a realistic task.

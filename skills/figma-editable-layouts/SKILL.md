@@ -1,6 +1,6 @@
 ---
 name: figma-editable-layouts
-description: Use when creating, updating, converting, or reviewing Figma design-mode screens, UI mockups, components, design systems, app pages, website pages, dialogs, panels, dashboards, or layouts, especially when output should be editable, designer-friendly, responsive, componentized, maintainable, auto-layout based, cleanly layered, or easy to adjust later.
+description: Use when the user wants to create, update, convert, or review Figma design-mode screens, components, design systems, app or website pages, dialogs, panels, dashboards, or other UI layouts. Apply whenever the Figma result should remain editable, responsive, componentized, auto-layout based, cleanly layered, maintainable, or easy for designers to adjust; do not use for flat raster mockups, FigJam diagrams, or slide-only work.
 ---
 
 # Figma Editable Layouts
@@ -23,6 +23,7 @@ This skill complements the bundled Figma skills. Before any `use_figma` call, al
 8. Use component instances from the design system for standard UI controls. When creating new components, expose useful properties for text, booleans, swaps, and slots instead of baking every state into detached layers.
 9. Keep text editable as text. Do not outline, flatten, rasterize, or use image text unless the user explicitly asks for a visual-only artifact.
 10. Name layers semantically. A designer should see `Pricing card`, `Feature list`, `Primary action`, and `Footer links`, not a page full of `Frame 123`, `Rectangle 91`, and `Text 42`.
+11. Load the current font before mutating any text property. For existing mixed-style text, inspect and load its current font segments instead of assuming a default family or weight.
 
 ## Construction Workflow
 
@@ -32,7 +33,7 @@ This skill complements the bundled Figma skills. Before any `use_figma` call, al
    - major sections: vertical or horizontal auto-layout frames
    - inner containers: rows, columns, cards, lists, and content blocks
    - leaves: component instances, text, icons, media, and simple shapes
-3. Create the root frame first and place it on the canvas with `x` and `y`. Its children should be positioned by auto layout, not manual coordinates.
+3. Create the root frame first and place it on the canvas with `x` and `y`. Build each section directly inside that wrapper; do not create top-level sections and rely on reparenting them across later tool calls. Its children should be positioned by auto layout, not manual coordinates.
 4. Build one major section at a time inside the root frame. Return created and mutated node IDs after every write so later calls can validate or adjust the exact nodes.
 5. For each section, decide sizing explicitly:
    - Root screen: fixed horizontal size, vertical hug or auto height.

@@ -1,4 +1,4 @@
 interface:
   display_name: "SVG Design"
   short_description: "Create and convert SVG mockups without layout overlap."
-  default_prompt: "Create or convert an SVG mockup with rendered verification."
+  default_prompt: "Use $svg-design to create or debug this SVG and verify the rendered result."

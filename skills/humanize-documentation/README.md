@@ -21,8 +21,8 @@ Guidance for rewriting technical documentation so it feels natural, precise, and
 ## Install
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/humanize-documentation ~/.agents/skills/humanize-documentation
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/humanize-documentation "$HOME/.agents/skills/humanize-documentation"
 ```
 
 For project-local usage:

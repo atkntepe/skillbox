@@ -1,6 +1,6 @@
 ---
 name: write-codex-goal
-description: Use when drafting Codex /goal prompts, goal instruction Markdown files, durable long-running objectives, stopping conditions, validation loops, checkpoint plans, or background task prompts for Codex CLI goals.
+description: Use when the user wants to draft or revise a Codex `/goal` prompt, goal instruction Markdown file, durable long-running objective, stopping condition, validation loop, checkpoint plan, progress contract, or background-task brief. Apply when work should persist across many turns with measurable completion; do not use for one-off prompts, loose backlogs, or tasks whose next step depends on frequent unresolved product decisions.
 ---
 
 # Write Codex Goal
@@ -30,6 +30,7 @@ Do not create a goal for unrelated task lists, vague improvement requests, or wo
 4. Use `references/goal-contract-template.md` for the goal file structure when a new file is needed.
 5. Return a concise `/goal` prompt that references the file instead of repeating the whole contract.
 6. Do not start or set the goal unless the user asked for that. Usually the deliverable is the file path plus the command to paste.
+7. Add a token budget only when the user explicitly requests one. Do not invent a budget as a proxy for a real stop condition.
 
 ## Goal File Rules
 
@@ -56,15 +57,19 @@ Use the user's style when present. For example:
 /goal Follow the instructions in packages/components/scheduler/docs/react-scheduler-quality-parity-goal.md. Starting from baseline 372564578, continuously audit and improve React Scheduler parity with Vue Scheduler until the instruction file's stop condition is satisfied.
 ```
 
-## CLI Notes
+## Goal Lifecycle
 
-`/goal` is experimental in Codex CLI and requires `features.goals`. It can be enabled from `/experimental` or by adding `goals = true` under `[features]` in `config.toml`.
+Current Codex builds expose goals as a stable long-running task surface. Keep the durable objective in the goal file and use lifecycle controls for state, not as substitutes for acceptance criteria.
 
 Useful controls:
 
-- `/goal <objective>` sets the goal.
+- `/goal <objective>` creates or replaces the goal when allowed.
 - `/goal` views the current goal.
-- `/goal pause`, `/goal resume`, and `/goal clear` control an active goal.
+- `/goal edit` revises the objective.
+- `/goal pause` and `/goal resume` suspend or continue work without changing the objective.
+- `/goal clear` abandons and removes the current goal.
+
+Only mark a goal complete when every required stop condition is satisfied. Use blocked status only for a genuine impasse that cannot be resolved through further in-scope work; do not use it merely because the work is difficult, slow, or incomplete.
 
 ## Output Format
 

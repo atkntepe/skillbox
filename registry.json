@@ -5,49 +5,49 @@
     {
       "name": "frontend-design",
       "path": "skills/frontend-design",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Frontend UI design and implementation guidance for polished, production-ready interfaces.",
       "tags": ["frontend", "design", "ui", "codex"]
     },
     {
       "name": "figma-editable-layouts",
       "path": "skills/figma-editable-layouts",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance for creating editable, designer-friendly Figma layouts with auto layout and clean layer structure.",
       "tags": ["figma", "design", "auto-layout", "ui"]
     },
     {
       "name": "humanize-documentation",
       "path": "skills/humanize-documentation",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance for rewriting technical documentation so it feels natural, precise, maintainer-written, and useful.",
       "tags": ["documentation", "technical-writing", "components", "tone"]
     },
     {
       "name": "remotion-prompts",
       "path": "skills/remotion-prompts",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance for drafting agent-ready Remotion marketing-video prompts with storyboard, timing, and ad structure.",
       "tags": ["remotion", "video", "marketing", "prompting", "ads"]
     },
     {
       "name": "svg-design",
       "path": "skills/svg-design",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance and lightweight tooling for creating, converting, and debugging SVG mockups without overlap, clipping, or scaling issues.",
       "tags": ["svg", "design", "vector", "mockups", "codex"]
     },
     {
       "name": "write-animation-prompts",
       "path": "skills/write-animation-prompts",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance for writing precise animation prompts with motion vocabulary, timing, sequencing, and constraints.",
       "tags": ["animation", "motion", "prompting", "video", "ui"]
     },
     {
       "name": "write-codex-goal",
       "path": "skills/write-codex-goal",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Guidance for preparing durable Codex /goal instruction files and slash prompts.",
       "tags": ["codex", "goal", "planning", "automation"]
     }

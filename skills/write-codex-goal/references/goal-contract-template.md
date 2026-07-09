@@ -9,6 +9,8 @@ Use this template for a durable instruction file referenced by a short `/goal` p
 
 <One durable objective. Keep it bigger than a single prompt and smaller than an open-ended backlog.>
 
+Token budget: <include only when the user explicitly requested one; otherwise delete this line>
+
 ## Baseline
 
 - Starting point: <commit SHA, failing command, current score, current behavior, known gap list, or artifact>
@@ -68,6 +70,17 @@ After each checkpoint, append a concise entry with:
 - Remaining gaps
 - Blocked status, if any
 
+Keep the log operational rather than narrative. When it becomes long, preserve the verified baseline and unresolved gaps while compacting older detail into a short summary.
+
+## Resume Snapshot
+
+Keep this section current so work can resume after context compaction or a new turn:
+
+- Current verified baseline: <commit, command result, artifact, or count>
+- Last completed checkpoint: <name and evidence>
+- Next smallest unresolved gap: <specific next action>
+- Active blocker: <none, or evidence-backed blocker>
+
 ## Pause Conditions
 
 Pause and ask for guidance if:
@@ -85,4 +98,5 @@ Pause and ask for guidance if:
 - Keep changes scoped to the objective and current checkpoint.
 - Verify before claiming completion.
 - Keep progress reports short and evidence-based.
+- Do not claim completion because time or token budget is low; complete only when the stop condition is satisfied.
 ```

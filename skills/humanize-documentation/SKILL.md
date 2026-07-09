@@ -1,6 +1,6 @@
 ---
 name: humanize-documentation
-description: Use when technical documentation reads as AI-written, stiff, verbose, imprecise, hard to scan, or disconnected from source behavior. Applies to component docs, API docs, README usage sections, guides, prop/event tables, migration notes, examples, and troubleshooting docs.
+description: Use when the user wants to rewrite, review, or improve technical documentation that feels AI-written, stiff, verbose, imprecise, hard to scan, or disconnected from source behavior. Apply to component and API docs, README usage sections, guides, reference tables, migration notes, examples, and troubleshooting content; do not use for pure marketing copy or unsupported rewrites that would require inventing product behavior.
 ---
 
 # Humanize Documentation
@@ -13,6 +13,7 @@ Make technical documentation feel like it was written by a careful human maintai
    - Inspect the relevant component, API, tests, examples, changelog, or existing docs.
    - Identify exact names, props, events, slots, classes, commands, versions, paths, defaults, and constraints.
    - Treat unknown behavior as unknown. Do not invent capabilities, guarantees, performance claims, or compatibility details.
+   - Identify generated files and their source templates. Edit the source of truth instead of hand-editing generated output unless the repository explicitly requires both.
 
 2. Identify the reader and job.
    - Who is reading: first-time user, component consumer, maintainer, migrator, or troubleshooter?
@@ -42,6 +43,7 @@ Make technical documentation feel like it was written by a careful human maintai
 6. Verify the rewrite.
    - Cross-check every factual claim against code or source docs.
    - Run available docs, lint, typecheck, or test commands when the edit touches executable examples or generated docs.
+   - Check headings, links, anchors, code fences, tables, and version references after structural edits.
    - Re-read as the target reader: can they decide, implement, and debug without guessing?
 
 ## Component Documentation Pattern

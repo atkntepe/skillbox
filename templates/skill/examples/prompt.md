@@ -1,5 +1,5 @@
 # Example Prompt
 
-Use the `skill-name` skill.
+Use $skill-name.
 
 Describe the task here.

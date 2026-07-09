@@ -20,8 +20,8 @@ Guidance for preparing durable Codex `/goal` instruction files and the short sla
 ## Install
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/write-codex-goal ~/.agents/skills/write-codex-goal
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/write-codex-goal "$HOME/.agents/skills/write-codex-goal"
 ```
 
 For project-local usage:

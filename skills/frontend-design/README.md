@@ -19,8 +19,8 @@ Frontend UI design and implementation guidance for agentic coding workflows.
 ## Install
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/frontend-design ~/.agents/skills/frontend-design
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/frontend-design "$HOME/.agents/skills/frontend-design"
 ```
 
 For project-local usage:

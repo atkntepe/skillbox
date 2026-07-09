@@ -1,0 +1,28 @@
+{
+  "name": "skillbox",
+  "version": "0.2.0",
+  "description": "A curated collection of focused Codex skills for design, documentation, motion, SVG, Figma, and long-running goals.",
+  "author": {
+    "name": "Atakan",
+    "url": "https://github.com/atkntepe"
+  },
+  "homepage": "https://github.com/atkntepe/skillbox",
+  "repository": "https://github.com/atkntepe/skillbox",
+  "license": "MIT",
+  "keywords": ["codex", "agent-skills", "design", "documentation", "motion"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Skillbox",
+    "shortDescription": "Focused workflows for design, docs, motion, and Codex",
+    "longDescription": "Install a curated set of reusable Codex skills for frontend and Figma design, SVG production, technical documentation, animation and Remotion prompts, and durable long-running goal contracts.",
+    "developerName": "Atakan",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/atkntepe/skillbox",
+    "defaultPrompt": [
+      "Use $frontend-design to polish this interface.",
+      "Use $humanize-documentation to improve these docs.",
+      "Use $write-codex-goal to draft a durable goal."
+    ]
+  }
+}

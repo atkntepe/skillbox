@@ -39,3 +39,40 @@ for (const skill of skills) {
 
   console.log(`Packaged ${path.relative(root, output)}`);
 }
+
+const pluginOutput = path.join(distDir, "skillbox-plugin.zip");
+if (fs.existsSync(pluginOutput)) fs.rmSync(pluginOutput);
+
+const pluginResult = spawnSync(
+  "zip",
+  [
+    "-r",
+    pluginOutput,
+    ".codex-plugin",
+    ".agents",
+    "skills",
+    "templates",
+    "scripts",
+    "package.json",
+    "registry.json",
+    "LICENSE",
+    "README.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "-x",
+    "*.DS_Store",
+    "*/node_modules/*",
+    "*/dist/*"
+  ],
+  {
+    cwd: root,
+    stdio: "inherit"
+  }
+);
+
+if (pluginResult.status !== 0) {
+  console.error("Failed to package the Skillbox plugin.");
+  process.exit(pluginResult.status ?? 1);
+}
+
+console.log(`Packaged ${path.relative(root, pluginOutput)}`);

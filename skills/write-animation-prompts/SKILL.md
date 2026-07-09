@@ -13,6 +13,7 @@ Write animation prompts as motion direction, not decorative adjectives. Name the
    - Determine whether the prompt is for text-to-video, image-to-video, UI animation, motion storyboard, 3D scene, kinetic type, product demo, or implementation guidance.
    - Capture duration, aspect ratio, loop behavior, style, brand tone, and any tool-specific limits if the user provided them.
    - If the target is unclear, make a conservative prompt that avoids tool-specific syntax and labels assumptions separately.
+   - Do not invent tool parameters, model features, camera controls, or negative-prompt syntax. Verify current tool behavior when the user names a fast-moving product or model.
 
 2. Translate the rough idea into motion jobs.
    - Replace vague goals like "make it dynamic" with functional jobs: orient the viewer, reveal hierarchy, show cause and effect, confirm interaction, compare states, create anticipation, or add ambient life.
@@ -28,6 +29,7 @@ Write animation prompts as motion direction, not decorative adjectives. Name the
    - Include duration ranges, stagger intervals, and easing language when they matter.
    - For UI and product motion, default to short, purpose-led timing: quick response, slower spatial transition, subtle ambient loop.
    - Use ease-out for user-triggered feedback, ease-in-out for objects moving between stable states, linear only for constant mechanical motion, and spring language when interruption, velocity, or physical weight matters.
+   - Use seconds for generative-video prompts and frames only for frame-based tools or implementation prompts that expose fps.
 
 5. Add camera, composition, and continuity.
    - For video or 3D prompts, describe framing, camera motion, depth, lens feel, foreground/background relationship, and where attention should land.

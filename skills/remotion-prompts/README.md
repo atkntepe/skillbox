@@ -32,13 +32,13 @@ Use $remotion-prompts to draft a 30-second Remotion launch-video prompt for this
 ## Install
 
 ```sh
-mkdir -p ~/.codex/skills
-cp -R skills/remotion-prompts ~/.codex/skills/remotion-prompts
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/remotion-prompts "$HOME/.agents/skills/remotion-prompts"
 ```
 
 For project-local usage:
 
 ```sh
-mkdir -p .codex/skills
-cp -R skills/remotion-prompts .codex/skills/remotion-prompts
+mkdir -p .agents/skills
+cp -R skills/remotion-prompts .agents/skills/remotion-prompts
 ```

@@ -1,6 +1,6 @@
 ---
 name: frontend-design
-description: Use when designing, reviewing, or implementing frontend UI with attention to layout, visual hierarchy, spacing, component states, accessibility, responsive behavior, and production-ready polish. Do not use for backend-only tasks.
+description: Use when the user wants to design, implement, redesign, critique, or polish frontend UI, including pages, components, dashboards, landing pages, forms, and application states. Apply for visual hierarchy, layout, typography, spacing, responsiveness, accessibility, interaction states, and production-ready implementation; do not use for backend-only work or purely structural code changes with no UI impact.
 ---
 
 # Frontend Design
@@ -14,6 +14,7 @@ Create distinctive, production-grade interfaces with a clear visual point of vie
    - Inspect the stack, styling system, tokens, layout primitives, and component patterns.
    - Reuse the existing framework and architecture unless the user explicitly asks for a standalone implementation.
    - Prefer minimal dependencies. Do not add libraries just to chase aesthetics.
+   - Define what must be preserved: behavior, content, routes, design-system contracts, and user-owned changes.
 
 2. Choose one strong design direction before coding.
    - Commit to a single aesthetic direction that fits the product.
@@ -28,6 +29,7 @@ Create distinctive, production-grade interfaces with a clear visual point of vie
    - Keep the result semantic, responsive, maintainable, and integrated with the existing app.
    - Use reusable tokens or variables for color, spacing, radii, shadows, and motion.
    - Ensure the layout works across mobile, tablet, and desktop.
+   - Design realistic long-copy, loading, empty, error, disabled, and dense-data states when the surface can encounter them.
 
 ## Design Directives
 
@@ -93,10 +95,12 @@ When the brief is vague, infer the audience and product category from the availa
 Before finishing:
 
 - Run relevant checks such as lint, typecheck, tests, or build when available.
-- Inspect for overflow, broken alignment, weak hierarchy, inconsistent spacing, and dead states.
-- Verify responsive behavior.
-- Verify hover, focus, disabled, error, loading, and empty states where relevant.
+- Render and inspect the UI in a browser when a runnable target exists. Do not claim visual verification from source review alone.
+- Inspect representative narrow and wide viewports for overflow, broken alignment, weak hierarchy, inconsistent spacing, and dead states.
+- Verify keyboard flow, visible focus, touch targets, reduced motion, and contrast where relevant.
+- Verify hover, active, selected, disabled, error, loading, empty, and long-content states where relevant.
 - Remove ornamental elements that do not improve the result.
+- For a formal UI audit or final QA pass, read `references/checklist.md` and resolve or report every applicable item.
 
 ## Response
 

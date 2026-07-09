@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Codex Goal"
+  short_description: "Draft durable Codex goals with verifiable stop rules"
+  default_prompt: "Use $write-codex-goal to turn this long-running objective into a durable goal contract and exact `/goal` prompt."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Design"
+  short_description: "Design and polish production-ready frontend UI"
+  default_prompt: "Use $frontend-design to turn this frontend brief or screen into a polished, responsive implementation."

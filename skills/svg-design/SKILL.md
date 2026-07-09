@@ -36,9 +36,10 @@ Create SVGs as deliberate vector interfaces: stable coordinate system first, sem
    - Use realistic copy lengths when testing. Short placeholder text hides overlap bugs.
 
 6. Render and inspect before finishing.
-   - Run `node skills/svg-design/scripts/svg-preview.mjs <file.svg>` from the repo root, or read the script and adapt its preview wrapper if the skill is installed elsewhere.
+   - Run `node <skill-directory>/scripts/svg-preview.mjs <file.svg> --strict`. Resolve `<skill-directory>` from the loaded skill path instead of assuming the current repository layout.
    - Open the generated preview HTML in a browser when visual correctness matters.
    - Check normal, fit-width, light, dark, and outline views. Look for clipped shadows, cropped strokes, hidden text, invalid IDs, and accidental element overlap.
+   - Do not preview untrusted SVG active content. The bundled script rejects scripts, inline event handlers, and JavaScript URLs by default.
 
 ## CSS-to-SVG Conversion
 

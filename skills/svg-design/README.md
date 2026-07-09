@@ -19,13 +19,13 @@ Guidance and lightweight tooling for creating, converting, and debugging SVG moc
 ## Install
 
 ```sh
-mkdir -p ~/.codex/skills
-cp -R skills/svg-design ~/.codex/skills/svg-design
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/svg-design "$HOME/.agents/skills/svg-design"
 ```
 
 For project-local usage:
 
 ```sh
-mkdir -p .codex/skills
-cp -R skills/svg-design .codex/skills/svg-design
+mkdir -p .agents/skills
+cp -R skills/svg-design .agents/skills/svg-design
 ```

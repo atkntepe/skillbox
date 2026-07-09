@@ -32,13 +32,13 @@ Use $write-animation-prompts to turn this rough idea into a precise animation pr
 ## Install
 
 ```sh
-mkdir -p ~/.codex/skills
-cp -R skills/write-animation-prompts ~/.codex/skills/write-animation-prompts
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/write-animation-prompts "$HOME/.agents/skills/write-animation-prompts"
 ```
 
 For project-local usage:
 
 ```sh
-mkdir -p .codex/skills
-cp -R skills/write-animation-prompts .codex/skills/write-animation-prompts
+mkdir -p .agents/skills
+cp -R skills/write-animation-prompts .agents/skills/write-animation-prompts
 ```

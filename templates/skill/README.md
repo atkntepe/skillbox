@@ -15,6 +15,13 @@ Short description of the skill.
 ## Install
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/skill-name ~/.agents/skills/skill-name
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/skill-name "$HOME/.agents/skills/skill-name"
+```
+
+For repository-local usage:
+
+```sh
+mkdir -p .agents/skills
+cp -R skills/skill-name .agents/skills/skill-name
 ```

@@ -1,18 +1,18 @@
 ---
 name: skill-name
-description: Use this skill when a specific, reusable workflow or domain guide should be loaded for agentic work.
+description: Use when the user wants to complete [specific job or outcome]. Apply to [clear trigger contexts and keywords]; do not use for [nearest non-trigger or boundary].
 ---
 
 # Skill Name
 
-Describe what the skill helps the agent do.
+State the outcome and the non-obvious expertise this skill adds. Remove explanations the agent already knows.
 
 ## Workflow
 
-1. Read the relevant repo or task context.
-2. Follow the domain-specific steps.
-3. Run the appropriate validation before reporting completion.
+1. Inspect the relevant source of truth and preserve explicit scope boundaries.
+2. Follow the domain-specific procedure with a clear default path.
+3. Validate the output, fix failures, and repeat until the applicable checks pass.
 
 ## References
 
-- Read `references/checklist.md` when reviewing output quality.
+- Read `references/checklist.md` before the final quality pass.

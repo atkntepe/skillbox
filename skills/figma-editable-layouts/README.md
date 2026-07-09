@@ -19,8 +19,8 @@ Guidance for creating Figma design-mode artifacts that stay editable, designer-f
 ## Install
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R skills/figma-editable-layouts ~/.agents/skills/figma-editable-layouts
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/figma-editable-layouts "$HOME/.agents/skills/figma-editable-layouts"
 ```
 
 For project-local usage:

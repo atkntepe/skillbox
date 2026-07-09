@@ -119,7 +119,7 @@ Use this reference to choose accurate motion language. Load only the sections ne
 
 ## Smoothness, Performance, And Accessibility
 
-- **Frame rate / FPS**: Frames per second. 60fps is the baseline for smooth UI motion.
+- **Frame rate / FPS**: Frames per second. Match the product and delivery target; 60fps is common for interactive UI, while video workflows often use 24, 25, or 30fps.
 - **Jank**: Visible stutter from missed frames or heavy work.
 - **Dropped frame**: A frame that misses its render deadline.
 - **Compositing**: GPU handles transform or opacity without recalculating layout.
