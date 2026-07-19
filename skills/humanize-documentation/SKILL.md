@@ -1,6 +1,6 @@
 ---
 name: humanize-documentation
-description: Use when the user wants to rewrite, review, or improve technical documentation that feels AI-written, stiff, verbose, imprecise, hard to scan, or disconnected from source behavior. Apply to component and API docs, README usage sections, guides, reference tables, migration notes, examples, and troubleshooting content; do not use for pure marketing copy or unsupported rewrites that would require inventing product behavior.
+description: Use when the user wants to rewrite, review, or improve technical documentation that feels AI-written, stiff, verbose, imprecise, ambiguous, hard to scan, or disconnected from source behavior. Apply to component and API docs, README usage sections, guides, reference tables, migration notes, examples, and troubleshooting content, including requests for Simplified Technical English (STE)-inspired clarity; do not use for pure marketing copy or unsupported rewrites that would require inventing product behavior.
 ---
 
 # Humanize Documentation
@@ -45,6 +45,23 @@ Make technical documentation feel like it was written by a careful human maintai
    - Run available docs, lint, typecheck, or test commands when the edit touches executable examples or generated docs.
    - Check headings, links, anchors, code fences, tables, and version references after structural edits.
    - Re-read as the target reader: can they decide, implement, and debug without guessing?
+
+## STE-Inspired Clarity Pass
+
+Use selected principles from ASD-STE100 Simplified Technical English as a clarity check, especially for procedures, safety-critical instructions, international readers, or text that will be translated. Use them after you establish the correct structure and technical meaning.
+
+- Use one term for each concept. Do not rotate synonyms for variety.
+- Prefer short, concrete words, but preserve established domain terms and exact product language.
+- Use active voice when the actor matters or the sentence gives an instruction. Use passive voice when the actor is unknown, irrelevant, or less important than the result.
+- Give one instruction per numbered step. Start instructions with an imperative verb.
+- Put a condition before the action it controls: "If the request fails, retry it once."
+- Keep each sentence focused on one topic. Split it when a second idea, condition, or action makes it harder to parse.
+- Introduce information gradually and keep each paragraph focused on one topic.
+- Use a vertical list when it makes complex choices, requirements, or sequences easier to scan.
+
+Treat these as strong defaults, not mechanical compliance rules. Do not force every sentence under a fixed word count, ban contractions globally, or replace familiar software terms with awkward alternatives. Sentence-length targets can expose overloaded prose, but meaning and natural flow come first.
+
+Do not claim ASD-STE100 compliance unless the user explicitly requests it and the text has been checked against the complete current standard, including its writing rules and controlled dictionary. Otherwise describe the result as "STE-inspired" or "informed by Simplified Technical English."
 
 ## Component Documentation Pattern
 
